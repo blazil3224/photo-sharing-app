@@ -1,0 +1,155 @@
+/* 写真アップロードフォームのスタイル */
+
+.upload-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.upload-area {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.upload-area:hover:not(.disabled) {
+  border-color: var(--bs-primary) !important;
+  background-color: var(--bs-light);
+}
+
+.upload-area.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.upload-placeholder {
+  padding: 2rem 1rem;
+}
+
+.upload-placeholder i {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.preview-container {
+  position: relative;
+}
+
+.preview-container img {
+  border: 2px solid var(--bs-border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ドラッグオーバー時のアニメーション */
+.upload-area.border-primary {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(13, 110, 253, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(13, 110, 253, 0);
+  }
+}
+
+/* 進捗バーのカスタマイズ */
+.progress {
+  height: 8px;
+  border-radius: 4px;
+}
+
+.progress-bar {
+  transition: width 0.3s ease;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .upload-form {
+    margin: 0 1rem;
+  }
+  
+  .upload-area {
+    min-height: 150px !important;
+  }
+  
+  .upload-placeholder {
+    padding: 1rem 0.5rem;
+  }
+  
+  .upload-placeholder i {
+    font-size: 2rem !important;
+  }
+  
+  .preview-container img {
+    max-height: 200px !important;
+  }
+}
+
+/* エラー状態のスタイル */
+.upload-area.border-danger {
+  border-color: var(--bs-danger) !important;
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+/* 成功状態のスタイル */
+.upload-area.border-success {
+  border-color: var(--bs-success) !important;
+  background-color: rgba(25, 135, 84, 0.1);
+}
+
+/* ファイル情報の表示 */
+.file-info {
+  font-size: 0.875rem;
+  color: var(--bs-secondary);
+  margin-top: 0.5rem;
+}
+
+/* キャプション文字数カウンター */
+.form-text {
+  text-align: right;
+  font-size: 0.75rem;
+}
+
+/* ボタンのスタイル調整 */
+.card-footer .btn {
+  min-width: 100px;
+}
+
+/* アップロード中の無効化スタイル */
+.uploading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Bootstrap Iconsが読み込まれていない場合の代替 */
+.bi::before {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
+/* アクセシビリティ対応 */
+.upload-area:focus-within {
+  outline: 2px solid var(--bs-primary);
+  outline-offset: 2px;
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  .upload-area {
+    background-color: var(--bs-dark);
+    border-color: var(--bs-secondary);
+  }
+  
+  .upload-area:hover:not(.disabled) {
+    background-color: rgba(13, 110, 253, 0.1);
+  }
+  
+  .preview-container img {
+    border-color: var(--bs-secondary);
+  }
+}

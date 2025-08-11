@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      REACT_APP_API_URL: "http://localhost:5000"
+    depends_on:
+      - backend
+
+  # Flask Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+    environment:
+      FLASK_DEBUG: "1"
+      AWS_ACCESS_KEY_ID: "test"
+      AWS_SECRET_ACCESS_KEY: "test"
+      AWS_DEFAULT_REGION: "us-east-1"
+      DYNAMODB_ENDPOINT: "http://dynamodb:8000"
+      S3_ENDPOINT: "http://localstack:4566"
+    depends_on:
+      - dynamodb
+      - localstack
+
+  # DynamoDB Local
+  dynamodb:
+    image: amazon/dynamodb-local:latest
+    ports:
+      - "8000:8000"
+    command: 
+      - "-jar"
+      - "DynamoDBLocal.jar"
+      - "-sharedDb"
+      - "-inMemory"
+
+  # LocalStack for S3 simulation
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"
+    environment:
+      SERVICES: "s3"
+      DEBUG: "1"
+      DATA_DIR: "/tmp/localstack/data"
+    volumes:
+      - "./localstack:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"

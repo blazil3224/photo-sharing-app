@@ -1,0 +1,66 @@
+{
+  "name": "photo-sharing-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^1.4.0",
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.13.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "build:analyze": "npm run build && npx serve -s build",
+    "build:profile": "react-scripts build --profile",
+    "test": "react-scripts test --watchAll=false",
+    "test:watch": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:unit": "react-scripts test --testPathPattern=\"__tests__/.*\\.test\\.js$\" --testPathIgnorePatterns=\"__tests__/(e2e|integration|performance|security)/\" --watchAll=false",
+    "test:integration": "react-scripts test --testPathPattern=\"__tests__/integration/.*\\.test\\.js$\" --watchAll=false",
+    "test:e2e": "react-scripts test --testPathPattern=\"__tests__/e2e/.*\\.test\\.js$\" --watchAll=false --testTimeout=30000",
+    "test:performance": "react-scripts test --testPathPattern=\"__tests__/performance/.*\\.test\\.js$\" --watchAll=false",
+    "test:security": "react-scripts test --testPathPattern=\"__tests__/security/.*\\.test\\.js$\" --watchAll=false",
+    "test:all": "npm run test:unit && npm run test:integration && npm run test:e2e && npm run test:performance && npm run test:security",
+    "test:ci": "node src/__tests__/e2e/config/testRunner.js",
+    "eject": "react-scripts eject",
+    "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
+    "preload-critical": "node scripts/preload-critical.js"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(axios)/)"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+      "bootstrap-icons/font/bootstrap-icons.css": "identity-obj-proxy"
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1"
+  }
+}
