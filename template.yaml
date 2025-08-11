@@ -15,12 +15,13 @@ Parameters:
   
   DomainName:
     Type: String
-    Default: photo-sharing-app.example.com
-    Description: アプリケーションのドメイン名
+    Default: ""
+    Description: アプリケーションのドメイン名（オプション）
   
   CertificateArn:
     Type: String
-    Description: SSL証明書のARN
+    Default: ""
+    Description: SSL証明書のARN（オプション）
   
   DatabaseReadCapacity:
     Type: Number

@@ -104,15 +104,15 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# 必須パラメータのチェック
+# オプションパラメータのチェック
 if [[ -z "$DOMAIN_NAME" ]]; then
-    log_error "ドメイン名が指定されていません (-d オプションを使用)"
-    exit 1
+    log_warning "ドメイン名が指定されていません。CloudFrontのデフォルトドメインを使用します。"
+    DOMAIN_NAME=""
 fi
 
 if [[ -z "$CERTIFICATE_ARN" ]]; then
-    log_error "SSL証明書のARNが指定されていません (-c オプションを使用)"
-    exit 1
+    log_warning "SSL証明書のARNが指定されていません。HTTPSは使用できません。"
+    CERTIFICATE_ARN=""
 fi
 
 # 環境の検証
